@@ -33,6 +33,11 @@ class Client {
 
         // Montar headers default
         this.headersDefault = this.option('headers', {});
+
+        // Registrar recursos
+        this.resource('Pais',      'localidades/paises');
+        this.resource('Estado',    'localidades/estados');
+        this.resource('Municipio', 'localidades/municipios');
     }
 
     /**
@@ -40,10 +45,10 @@ class Client {
      * 
      * @param {string} resourceId ID do recurso
      * @param {string} endpoint 
-     * @param {object} methods
+     * @param {Function} methods
      * @returns {Client}
      */
-    resource(resourceId, endpoint, methods = {})
+    resource(resourceId, endpoint, methods = null)
     {
         this[resourceId] = new Resource(this, endpoint, methods);
 
