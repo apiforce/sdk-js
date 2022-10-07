@@ -2,6 +2,7 @@ const axios = require('axios');
 const Config = require('./config');
 const Global = require('./global');
 const arr = require("rhinojs/support/arr");
+const Resource = require('./resource');
 
 class Client {
     /**
@@ -32,6 +33,20 @@ class Client {
 
         // Montar headers default
         this.headersDefault = this.option('headers', {});
+    }
+
+    /**
+     * Registrar 
+     * 
+     * @param {string} resourceId ID do recurso
+     * @param {*} endpoint 
+     * @returns {Client}
+     */
+    resource(resourceId, endpoint)
+    {
+        this[resourceId] = new Resource(this, endpoint);
+
+        return this;
     }
 
     /**
