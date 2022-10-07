@@ -4,9 +4,17 @@ class Resource {
     /**
      * Construtor.
      */
-    constructor(client, endpoint) {
+    constructor(client, endpoint, methods = {}) {
         this.client   = client;
         this.endpoint = endpoint;
+
+        // Aplicar metodos customizaveis
+        var keys = Object.keys(methods);
+        for (var i = 0; i < keys.length; i++) {
+            var method_key = keys[i];
+
+            this[method_key] = methods[method_key];
+        }
     }
 
     /**

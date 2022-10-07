@@ -39,12 +39,13 @@ class Client {
      * Registrar 
      * 
      * @param {string} resourceId ID do recurso
-     * @param {*} endpoint 
+     * @param {string} endpoint 
+     * @param {object} methods
      * @returns {Client}
      */
-    resource(resourceId, endpoint)
+    resource(resourceId, endpoint, methods = {})
     {
-        this[resourceId] = new Resource(this, endpoint);
+        this[resourceId] = new Resource(this, endpoint, methods);
 
         return this;
     }
